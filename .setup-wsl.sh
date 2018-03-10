@@ -37,7 +37,7 @@ if [[ -f ~/.git ]]; then
 fi
 
 git init
-git remote add origin https://github.com/kcrawley/tilde-slash.git
+git remote add origin git@github.com:kcrawley/tilde-slash.git
 git fetch
 git reset --hard origin/master
 
