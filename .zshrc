@@ -1,3 +1,5 @@
+unsetopt BG_NICE
+
 source $HOME/antigen.zsh
 
 antigen use oh-my-zsh
