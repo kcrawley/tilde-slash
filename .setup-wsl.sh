@@ -20,6 +20,7 @@ hash curl >/dev/null 2>&1 || {
 # remove any lingering doubt
 rm -rf ~/.oh-my-zsh
 rm -rf ~/antigen.zsh
+rm -rf ~/.antigen
 
 if [[ -f ~/.zshrc ]]; then
   mv ~/.zshrc ~/.zshrc_preinstall

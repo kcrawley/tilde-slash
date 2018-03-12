@@ -69,4 +69,3 @@ function showcmd() {
 	echo "dset <id>    -- apply docker swarm ENV settings for specific user (kcrawley||gitlab-ci)" 
     echo "dnuke        -- mother of god"
 }
-
