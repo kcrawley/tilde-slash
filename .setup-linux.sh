@@ -16,7 +16,7 @@ env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-z
 
 curl -L git.io/antigen > antigen.zsh
 
-if [[ -f ~/.git ]]; then
+if [[ -d ~/.git ]]; then
   cd ~ && rm -rf .git
 fi
 
