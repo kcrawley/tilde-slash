@@ -1,0 +1,72 @@
+function sjproc() {
+        sproc java
+}
+
+function sproc() {
+        sh -c "ps -W | grep $1"
+}
+
+function dkill() {
+    check_docker_host
+
+    docker kill $(docker ps -a -q)
+}
+
+function dwipe() {
+    check_docker_host
+
+    echo "stopping containers"
+    dkill
+    echo "removing all containers"
+    docker rm -f $(docker ps -a -q)
+}
+
+function cz() {
+	code ~/.zshalias
+}
+
+function sz() {
+	source ~/.zshalias
+}
+
+function check_docker_host() {
+    if [[ ! -z ${DOCKER_HOST} ]]; then
+		echo "oh hell no"
+		exit 1
+	fi
+}
+
+function dnuke() {
+    check_docker_host
+
+    dwipe
+    echo "deleting all images"
+    docker rmi -f $(docker images -q)
+}
+
+function dset() {
+    pwd=$(pwd)
+	cd ~/ucp-bundle/$1
+	eval "$(<env.sh)"
+	cd ${pwd}
+}
+
+function dunset() {
+	unset DOCKER_HOST
+	unset DOCKER_CERT_PATH
+	unset DOCKER_TLS_VERIFY
+}
+
+function showcmd() {
+    echo "cz           -- shortcut to code ~/.zshalias"
+	echo "sz           -- shortcut to source ~/.zshalias"
+    echo "sjproc       -- show all java procs"
+    echo "sproc <name> -- show all procs matching <name>"
+    echo "mkill <name> -- kill all procs matching <name>"
+    echo "dkill        -- kill all things docker"
+    echo "dwipe        -- kill and wipe containers"
+	echo "dunset       -- clear DOCKER env settings applied via dswarm()"
+	echo "dset <id>    -- apply docker swarm ENV settings for specific user (kcrawley||gitlab-ci)" 
+    echo "dnuke        -- mother of god"
+}
+
